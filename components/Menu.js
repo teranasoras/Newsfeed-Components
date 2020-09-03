@@ -37,9 +37,9 @@ function menuMaker(array){
   menu.classList.add('menu');
 //makes the list of items
   const menulist = document.createElement('ul');
-  array.forEach(function(item, index){
+  array.forEach(function(item){
     const newitem = document.createElement('li');
-    newitem.textContent = menuItems[index]
+    newitem.textContent = item
     menulist.append(newitem);
   })
   menu.append(menulist)
