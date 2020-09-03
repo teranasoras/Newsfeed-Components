@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Test',
+    date: 'Sep 2nd, 2020',
+    firstParagraph: `test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test`,
+
+    secondParagraph: `test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test `,
+
+    thirdParagraph: `test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test`
   }
 ];
 
@@ -102,7 +111,6 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
-
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
@@ -114,3 +122,47 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker(articleobj){
+  //creates the div the article will be in and gives it a class for manipulation later
+const newarticle = document.createElement('div');
+newarticle.classList.add('article');
+
+//creates the header
+const articlehead = document.createElement('h2');
+articlehead.textContent = articleobj.title;
+newarticle.append(articlehead)
+
+//creates date
+const date = document.createElement('p');
+date.classList.add('date');
+date.textContent = articleobj.date;
+newarticle.append(date);
+//makes the paragraphs
+const firstparagraph = document.createElement('p');
+firstparagraph.textContent = articleobj.firstParagraph;
+newarticle.append(firstparagraph);
+
+const secondparagraph = document.createElement('p');
+secondparagraph.textContent = articleobj.secondParagraph;
+newarticle.append(secondparagraph);
+
+const thirdparagraph = document.createElement('p');
+thirdparagraph.textContent = articleobj.thirdParagraph;
+newarticle.append(thirdparagraph);
+
+//creates the expand button
+const expandButton = document.createElement('span');
+expandButton.classList.add('expandButton');
+expandButton.textContent = '+'
+newarticle.append(expandButton);
+
+expandButton.addEventListener('click', function(event){
+  newarticle.classList.toggle('article-open')
+})
+return newarticle
+}
+let articles = document.querySelector('.articles')
+
+for(let i = 0; i < data.length; i++){
+  articles.append(articleMaker(data[i]));
+}
